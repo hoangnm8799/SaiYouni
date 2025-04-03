@@ -4,29 +4,56 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public int maxHp = 100;
+    public int currentHp;
+    public float weight;
+    public string name;
+    public float speed = 2.0f;
 
-    // 5 Enemies variables
+    private string[] enemyNames = { "Goblin", "Orc", "Troll", "Vampire", "Zombie" };
 
-    //variables 1 
+    void Awake()
+    {
+        SetRandomName();
+        SetRandomWeight();
+    }
 
-    //variables 2
+    void Move()
+    {
+        Debug.Log(name + " is moving with speed: " + speed);
+    }
 
-    //variables 3 
+    public void TakeDamage(int damage)
+    {
+        currentHp -= damage;
+        Debug.Log(name + " took " + damage + " damage. Remaining HP: " + currentHp);
 
-    //variables 4 
+        if (!IsAlive())
+        {
+            Die();
+        }
+    }
 
-    //variables 5 
+    void Die()
+    {
+        Debug.Log(name + " has died.");
+        Destroy(gameObject);
+    }
 
+    void SetRandomName()
+    {
+        name = enemyNames[Random.Range(0, enemyNames.Length)];
+        Debug.Log("New enemy named: " + name);
+    }
 
-    // 5 Enemies methods
+    void SetRandomWeight()
+    {
+        weight = Random.Range(40.0f, 100.0f);
+        Debug.Log(name + " has a weight of: " + weight + " kg.");
+    }
 
-    //Method 1
-
-    //Method 2
-
-    //Method 3
-
-    //Method 4
-
-    //Method 5
+    bool IsAlive()
+    {
+        return currentHp > 0;
+    }
 }
