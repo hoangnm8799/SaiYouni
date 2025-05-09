@@ -175,6 +175,11 @@ public class Sort : MonoBehaviour
         int[] randomNumbers = GenerateRandomArray(10, 1, 100);
         //----------------------Edit below --------------------
         //Insert Algorithm here
+        BubbleSort(randomNumbers);
+        InsertionSort(randomNumbers);
+        SelectionSort(randomNumbers);
+        QuickSort(randomNumbers, 0, randomNumbers.Length - 1);
+        MergeSort(randomNumbers, 0, randomNumbers.Length - 1);
         //----------------------Edit above --------------------
         ReadArray(randomNumbers);
     }
